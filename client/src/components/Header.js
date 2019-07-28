@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Payments from './Payments';
 
 class Header extends Component {
   renderContent() {
@@ -11,9 +12,27 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return <Nav.Link href="/auth/google">Log In</Nav.Link>
+        return (
+          <Nav>
+            <Nav.Item>
+              <Nav.Link href="/auth/google">Log In</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        )
       default:
-        return <Nav.Link href="/api/logout">Log Out</Nav.Link>;
+        return (
+          <Nav>
+            <Navbar.Text style={{ margin: '0 10px'}}>
+              Credits: {this.props.auth.credits}
+            </Navbar.Text>
+            <Nav.Item>
+              <Payments />
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/api/logout">Log Out</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        );
     }
   }
   render () {
@@ -23,22 +42,13 @@ class Header extends Component {
           <Navbar.Brand>Emaily</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+        <Navbar.Collapse id="basic-navbar-nav" className="text-right justify-content-end">
           <Nav>
             <Nav.Item>
               <Nav.Link href="#">Link 1</Nav.Link>
             </Nav.Item>
           </Nav>
-          <Nav>
-          <Nav.Item>
-              <Nav.Link href="#">Link 2</Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <Nav>
-            <Nav.Item>
-              {this.renderContent()}
-            </Nav.Item>
-          </Nav>
+          {this.renderContent()}
         </Navbar.Collapse>
       </Navbar>
     )

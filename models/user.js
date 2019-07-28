@@ -3,7 +3,11 @@ const { Schema } = mongoose;
 
 //Schema enforces properties and property attributes for database
 const userSchema = new Schema({
-  googleId: String
+  googleId: String,
+  credits: { 
+    type: Number, 
+    default: 0
+  }
 });
 
 
