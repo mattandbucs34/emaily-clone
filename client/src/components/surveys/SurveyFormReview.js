@@ -32,10 +32,10 @@ const SurveyReview = ({ surveyBack, formValues, sendSurvey, history }) => {
   )
 }
 
-function matStateToProps(state) {
+function mapStateToProps(state) {
   return {
     formValues: state.form.surveyForm.values
   };
 }
 
-export default connect(matStateToProps, actions)(withRouter(SurveyReview));
+export default connect(mapStateToProps, actions)(withRouter(SurveyReview));

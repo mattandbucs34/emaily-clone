@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSurveys } from '../../actions';
 
 class SurveyList extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      newstate: []
+    }
+  }
   componentDidMount() {
     this.props.fetchSurveys();
   }
@@ -23,8 +31,8 @@ class SurveyList extends Component {
             </p>
           </div>
           <div>
-            <a href='#' className="btn btn-success m-1">Yes: {survey.yes}</a>
-            <a href='#' className="btn btn-danger m-1">No: {survey.no}</a>
+            <Link to="#" className="btn btn-success m-1">Yes: {survey.yes}</Link>
+            <Link to="#" className="btn btn-danger m-1">No: {survey.no}</Link>
           </div>
         </div>
       )
@@ -42,7 +50,8 @@ class SurveyList extends Component {
 }
 
 function mapStateToProps({ surveys }) {
-  return { surveys}
+  console.log({ surveys })
+  return { surveys }
 }
 
 export default connect(mapStateToProps, { fetchSurveys })(SurveyList);
